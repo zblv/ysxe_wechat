@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.wechat.dao.TWechatScanMapper" >
+  <resultMap id="BaseResultMap" type="com.ys.wechat.model.TWechatScan" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="wechat_user_id" property="wechatUserId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="scan_date" property="scanDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, status, wechat_user_id, create_date, scan_date, end_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_scan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByUid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_scan
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_wechat_scan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ys.wechat.model.TWechatScan" >
+    insert into t_wechat_scan (id, uid, status, 
+      wechat_user_id, create_date, scan_date, 
+      end_date)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{wechatUserId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{scanDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ys.wechat.model.TWechatScan" >
+    insert into t_wechat_scan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="wechatUserId != null" >
+        wechat_user_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="scanDate != null" >
+        scan_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUserId != null" >
+        #{wechatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="scanDate != null" >
+        #{scanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ys.wechat.model.TWechatScan" >
+    update t_wechat_scan
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUserId != null" >
+        wechat_user_id = #{wechatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="scanDate != null" >
+        scan_date = #{scanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByUid" parameterType="com.ys.wechat.model.TWechatScan" >
+    update t_wechat_scan
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUserId != null" >
+        wechat_user_id = #{wechatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="scanDate != null" >
+        scan_date = #{scanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.ys.wechat.model.TWechatScan" >
+    update t_wechat_scan
+    set uid = #{uid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      wechat_user_id = #{wechatUserId,jdbcType=INTEGER},
+      scan_date = #{scanDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

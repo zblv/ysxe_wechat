@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.wechat.dao.TSysAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.ys.wechat.model.TSysAdmin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="rel_name" property="relName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, password, mobile_phone, email, rel_name, status, create_date, update_date
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="com.ys.wechat.model.TSysAdmin" >
+    insert into t_sys_admin (id, user_name, password, 
+      mobile_phone, email, rel_name, 
+      status, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{relName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.ys.wechat.model.TSysAdmin" >
+    update t_sys_admin
+    set user_name = #{userName,jdbcType=VARCHAR},
+   	<if test="password != null and password !=''" >
+   		password = #{password,jdbcType=VARCHAR},
+   	</if>
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      rel_name = #{relName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+      
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.ys.wechat.model.TSysAdmin" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_admin
+    where 1=1
+      <if test="id != null" >
+      	and id =  #{id,jdbcType=INTEGER}
+      </if>
+      <if test="userName != null and userName !=''" >
+        and user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null and password !=''" >
+        and password = password(#{password,jdbcType=VARCHAR})
+      </if>
+      <if test="mobilePhone != null and mobilePhone !=''" >
+        and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null and email !=''" >
+        and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="relName != null and relName !=''" >
+        and rel_name = #{relName,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and status !=''" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      order by id desc
+  </select>
+  
+  <select id="adminLogin" resultMap="BaseResultMap" parameterType="com.ys.wechat.model.TSysAdmin" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_admin
+    where user_name = #{userName,jdbcType=VARCHAR}
+    and password = #{password,jdbcType=VARCHAR}
+    and status = 'open'
+  </select>
+</mapper>

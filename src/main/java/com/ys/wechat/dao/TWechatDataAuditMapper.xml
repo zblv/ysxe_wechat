@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.wechat.dao.TWechatDataAuditMapper" >
+  <resultMap id="BaseResultMap" type="com.ys.wechat.model.TWechatDataAudit" >
+     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cus_type" jdbcType="VARCHAR" property="cusType" />
+    <result column="rel_name" jdbcType="VARCHAR" property="relName" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="loan_money" jdbcType="VARCHAR" property="loanMoney" />
+    <result column="loan_term" jdbcType="VARCHAR" property="loanTerm" />
+    <result column="loan_purpose" jdbcType="VARCHAR" property="loanPurpose" />
+    <result column="repay_source" jdbcType="VARCHAR" property="repaySource" />
+    <result column="is_mortgage" jdbcType="VARCHAR" property="isMortgage" />
+    <result column="mortgage_type" jdbcType="VARCHAR" property="mortgageType" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="audit_people" jdbcType="VARCHAR" property="auditPeople" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cus_type, rel_name, mobile_phone, email, address, loan_money, loan_term, loan_purpose, 
+    repay_source, is_mortgage, mortgage_type, state, audit_people, remark, create_date, 
+    update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_data_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+     update t_wechat_data_audit
+    set state = 'close'
+    where where id = #{id,jdbcType=BIGINT}
+  </delete>
+   <insert id="insert" parameterType="com.ys.wechat.model.TWechatDataAudit">
+     insert into t_wechat_data_audit (id, cus_type, rel_name, 
+      mobile_phone, email, address, 
+      loan_money, loan_term, loan_purpose, 
+      repay_source, is_mortgage, mortgage_type, 
+      state, audit_people, remark, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{cusType,jdbcType=VARCHAR}, #{relName,jdbcType=VARCHAR}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{loanMoney,jdbcType=VARCHAR}, #{loanTerm,jdbcType=VARCHAR}, #{loanPurpose,jdbcType=VARCHAR}, 
+      #{repaySource,jdbcType=VARCHAR}, #{isMortgage,jdbcType=VARCHAR}, #{mortgageType,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{auditPeople,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ys.wechat.model.TWechatDataAudit">
+    update t_wechat_data_audit
+    set cus_type = #{cusType,jdbcType=VARCHAR},
+    rel_name = #{relName,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+       email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      loan_money = #{loanMoney,jdbcType=VARCHAR},
+      loan_term = #{loanTerm,jdbcType=VARCHAR},
+      loan_purpose = #{loanPurpose,jdbcType=VARCHAR},
+      repay_source = #{repaySource,jdbcType=VARCHAR},
+      is_mortgage = #{isMortgage,jdbcType=VARCHAR},
+      mortgage_type = #{mortgageType,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      audit_people = #{auditPeople,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_data_audit
+    <if test="state !='' and state != null">
+    	where state = #{state,jdbcType=VARCHAR}
+    </if>
+    order by state,create_date desc 
+  </select>
+  
+   <delete id="delById" parameterType="java.lang.Long" >
+    delete from t_wechat_data_audit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+</mapper>

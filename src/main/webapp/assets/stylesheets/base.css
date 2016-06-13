@@ -1,0 +1,127 @@
+/* 全局input大小 */
+input{
+	height:32px !important;
+}
+
+/* 用户组分配用户 start */
+.divuser{
+	height:300px;
+	overflow:auto;
+}
+.divuser div{
+	cursor: pointer;
+}
+.selectuser{
+	background-color: pink;	
+}
+/* 用户组分配用户 start */
+
+/* pager tag start */
+div:after, ul:after, ol:after, li:after{
+	content: '';
+	display: table;
+	clear: both;
+	height:0;
+	overflow:hidden;
+}
+div, ul, ol, li{
+	*zoom:1;
+}
+
+#pagerdiv{
+	padding-right:20px;
+}
+.notic-page{
+	margin:58px 0 85px 0;
+}
+.page-list{
+	float: right;
+	margin-right: -5px;
+}
+.page-list a{
+	display: inline-block;
+	color: #777;
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+	width: 38px;
+	text-align: center;
+	border: 1px solid #dcdcdc;
+	margin: 0 5px;
+	vertical-align: middle;
+}
+.page-list a:hover{
+	background-color: #f3f3f3;
+}
+
+.page-list span.current{
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 5px;
+	width: 38px;
+	text-align: center;
+	color: #fff;
+	background-color: #45b8ef;
+	border: 1px solid #45b8ef;
+	vertical-align: middle;
+}
+.page-list span.disabled{
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+	width: 78px;
+	text-align: center;
+	margin: 0 5px;
+	color: #d3d3d3;
+	border: 1px solid #d3d3d3;
+	vertical-align: middle;
+}
+
+.page-list span.disabled i{
+	width: 5px;
+	height: 9px;
+	background-position: -875px -39px;
+	float: left;
+	margin: 13px 0 0 16px;
+}
+.page-list a.nextPage, .page-list a.prevPage{
+	width: 78px;
+}
+.page-list a.prevPage i{
+	width: 5px;
+	height: 9px;
+	margin: 13px 0 0 16px;
+	background-position: -867px -26px;
+	float: left;
+}
+.page-list span.disabled.next-page i{
+	width: 5px;
+	height: 9px;
+	margin: 13px 16px 0 0;
+	background-position: -875px -26px;
+	float: right;
+}
+.page-list a.nextPage i{
+	width: 5px;
+	height: 9px;
+	margin: 13px 16px 0 0;
+	background-position: -867px -39px;
+	float: right;
+}
+.page-list a.nextPage:hover, .page-list a.prevPage{
+	background-color: #fff;
+}
+.page-inf{
+	float: right;
+	line-height: 36px;
+	color: #777;
+}
+.page-inf span{
+	padding: 0 3px;
+}
+/* pager tag end */
+
+.progress{
+	margin-bottom: 0px !important;
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.wechat.dao.TWechatReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ys.wechat.model.TWechatReply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="key_type" property="keyType" jdbcType="VARCHAR" />
+    <result column="reply_type" property="replyType" jdbcType="VARCHAR" />
+    <result column="reply_text" property="replyText" jdbcType="VARCHAR" />
+    <result column="news_img_link" property="newsImgLink" jdbcType="VARCHAR" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="news_link" property="newsLink" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, keyword, key_type, reply_type, reply_text, news_img_link, news_title, news_link, 
+    status, remark, create_date, update_date
+  </sql>
+
+  <insert id="insert" parameterType="com.ys.wechat.model.TWechatReply" >
+    insert into t_wechat_reply (id, keyword, key_type, 
+      reply_type, reply_text, news_img_link, 
+      news_title, news_link, status, 
+      remark, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{keyType,jdbcType=VARCHAR}, 
+      #{replyType,jdbcType=VARCHAR}, #{replyText,jdbcType=VARCHAR}, #{newsImgLink,jdbcType=VARCHAR}, 
+      #{newsTitle,jdbcType=VARCHAR}, #{newsLink,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.ys.wechat.model.TWechatReply" >
+    update t_wechat_reply
+    set keyword = #{keyword,jdbcType=VARCHAR},
+      key_type = #{keyType,jdbcType=VARCHAR},
+      reply_type = #{replyType,jdbcType=VARCHAR},
+      reply_text = #{replyText,jdbcType=VARCHAR},
+      news_img_link = #{newsImgLink,jdbcType=VARCHAR},
+      news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_link = #{newsLink,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.ys.wechat.model.TWechatReply" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_reply
+    where 1=1
+      <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="keyword != null and keyword !=''" >
+        and keyword = #{keyword,jdbcType=VARCHAR}
+      </if>
+      <if test="keyType != null and keyword !=''" >
+        and key_type = #{keyType,jdbcType=VARCHAR}
+      </if>
+      <if test="replyType != null and keyword !=''" >
+        and reply_type = #{replyType,jdbcType=VARCHAR}
+      </if>
+      <if test="replyText != null and keyword !=''" >
+        and reply_text = #{replyText,jdbcType=VARCHAR}
+      </if>
+      <if test="newsImgLink != null and keyword !=''" >
+        and news_img_link = #{newsImgLink,jdbcType=VARCHAR}
+      </if>
+      <if test="newsTitle != null and keyword !=''" >
+        and news_title = #{newsTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="newsLink != null and keyword !=''" >
+        and news_link = #{newsLink,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and keyword !=''" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="remark != null and keyword !=''" >
+        and remark = #{remark,jdbcType=VARCHAR}
+      </if>
+      order by id desc
+  </select>
+  
+  
+  
+</mapper>

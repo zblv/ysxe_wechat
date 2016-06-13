@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="sp2p_wechat">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <property name="java-output-path" value="/sp2p_wechat/src/main/webapp/src/main/resources"/>
+        <property name="context-root" value="/ysxe_wechat"/>
+    </wb-module>
+</project-modules>

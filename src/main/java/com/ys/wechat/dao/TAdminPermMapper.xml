@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.wechat.dao.TAdminPermMapper" >
+  <resultMap id="BaseResultMap" type="com.ys.wechat.model.TAdminPerm" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_id, menu_id, create_date
+  </sql>
+  
+  <insert id="inserts" parameterType="com.ys.wechat.model.TAdminPerm" >
+    insert into t_admin_perm (id, admin_id, menu_id, 
+      create_date)
+    values 
+    <foreach item="item" index="index" collection="records"  separator=",">
+		(#{item.id,jdbcType=INTEGER}, #{item.adminId,jdbcType=INTEGER}, #{item.menuId,jdbcType=INTEGER}, 
+      	#{item.createDate,jdbcType=TIMESTAMP})
+     </foreach>
+  </insert>
+  
+  <delete id="deleteByAdminId" parameterType="java.lang.Integer" >
+    delete from t_admin_perm
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+</mapper>
